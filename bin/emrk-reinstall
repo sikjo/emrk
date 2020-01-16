@@ -23,7 +23,7 @@
 # It's time to reinstall EdgeOS!
 # EdgeOS won't reinstall itself!
 
-DEV=$EMRK_DEV || /dev/sda
+[ $EMRK_DEV ] && DEV=$EMRK_DEV || DEV=/dev/sda
 BOOT=${DEV}1
 ROOT=${DEV}2
 BOOT_MNT_DIR=/mnt/boot
@@ -53,6 +53,13 @@ YESNO="$(dirname "$0")"/yesno
 echo "WARNING: This script will reinstall EdgeOS from scratch"
 echo "If you have any usable data on your router storage,"
 echo "it will be irrecoverably destroyed!"
+echo ""
+echo "Source file: "
+echo "  $TAR_PATH"
+echo "Target device: "
+echo "  DEV=$DEV"
+echo "  BOOT=$BOOT"
+echo "  ROOT=$ROOT"
 echo "Do you want to continue?"
 "$YESNO"
 
